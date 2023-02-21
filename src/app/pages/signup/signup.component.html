@@ -1,1 +1,66 @@
-<p>signup works!</p>
+<div class="d-flex justify-content-center">
+  <div class="my-5 border border-primary rounded w-50 px-4 pb-4">
+    <h3 class="text-center text-primary fs-4">Fill in your information</h3>
+    <form (ngSubmit)="signUp()" [formGroup]="signUpForm" class="">
+      <div class="mb-3">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Fullname</mat-label>
+          <input matInput placeholder="Jhon Doe" formControlName="name">
+          <mat-icon matSuffix>person</mat-icon>
+          <mat-hint *ngIf="signUpForm.get('name')?.errors && signUpForm.get('name')?.touched" class="text-danger">
+            <small *ngIf="signUpForm.get('name')?.hasError('required')">Full name is required</small>
+          <small *ngIf="signUpForm.get('name')?.hasError('minlength')">This field must had atleast 6 characters</small>
+          </mat-hint>
+        </mat-form-field>
+
+      </div>
+      <div class="mb-3">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Email</mat-label>
+          <input matInput placeholder="accoutn@yourmail.com" formControlName="email">
+          <mat-icon matSuffix>mail</mat-icon>
+          <mat-hint  *ngIf="signUpForm.get('email')?.errors && signUpForm.get('email')?.touched" class="text-danger">
+            <small *ngIf="signUpForm.get('email')?.hasError('required')">The email is required</small>
+            <small *ngIf="signUpForm.get('email')?.hasError('minlength')">The email must had atleast 4 characters</small>
+            <small *ngIf="signUpForm.get('email')?.hasError('pattern')">This field must be an email account valid!!</small>
+          </mat-hint>
+        </mat-form-field>        
+      </div>
+
+      <div class="mb-3">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Password</mat-label>
+          <input matInput placeholder="password" formControlName="password" id="password">
+          <mat-icon matSuffix>key</mat-icon>
+          <mat-hint *ngIf="signUpForm.get('password')?.errors && signUpForm.get('password')?.touched" class="text-danger">
+            <small *ngIf="signUpForm.get('password')?.hasError('required')">Password is required</small>
+            <small *ngIf="signUpForm.get('password')?.hasError('pattern')">Password must had more than 6 characters, a uppercase, a lowercase and a number</small>
+          </mat-hint>
+        </mat-form-field>
+        
+      </div>
+      
+      <div class="mb-3">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Repeat password</mat-label>
+          <input matInput placeholder="password again" formControlName="repeatPass">
+          <mat-icon matSuffix>key</mat-icon>
+        </mat-form-field>        
+      </div>
+
+      <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" formControlName="agreeTerms">
+        <label class="form-check-label">I'm agree with terms of page</label>
+      </div>
+      <div class="d-flex justify-content-around">
+        <button type="submit" class="btn btn-primary" [disabled]="signUpForm.invalid">Submit</button>
+        <button [routerLink]="['/']" type="button" class="btn btn-warning">Go to home page</button>
+      </div>
+      <div class="d-flex flex-column justify-content-center mt-3">
+        <h3 class="text-center mb-1"> Do you have an account already? </h3>
+        <a [routerLink]="['/login']" class="text-primary text-center">Login here!!!</a>
+      </div>
+    </form>
+  </div>
+</div>
+

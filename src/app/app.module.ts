@@ -24,6 +24,7 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { FooterComponent } from './components/footer/footer.component';
+import { AngularMaterialModule } from './angular-material.module';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,7 @@ import { FooterComponent } from './components/footer/footer.component';
     FavoritesComponent,
     LoginComponent,
     SignupComponent,
-    FooterComponent
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,7 +53,8 @@ import { FooterComponent } from './components/footer/footer.component';
     routing, 
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AngularMaterialModule
   ],
   providers: [appRoutingProviders],
   bootstrap: [AppComponent]
