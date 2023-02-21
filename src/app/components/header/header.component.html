@@ -1,0 +1,23 @@
+<div class="header">
+  <div [routerLink]="['/']" class="image-title">
+    <img src="https://static.macupdate.com/products/61419/l/movie-explorer-pro-logo.png?v=1568341111" alt="icono app">
+    <h3 class="title-app">The movie app!!!</h3>
+  </div>
+  <div class="options-header">
+    <div class="sections">
+      <ul>
+        <li [routerLink]="['/movies']" [routerLinkActive]="['activeLink']">Movies</li>
+        <li [routerLink]="['/series']" [routerLinkActive]="['activeLink']">Series</li>
+        <li [routerLink]="['/trend']" [routerLinkActive]="['activeLink']">Trending</li>
+        <li [routerLink]="['/favorites']" [routerLinkActive]="['activeLink']">Favorites</li>
+      </ul>
+    </div>
+    <input type="search" name="search" id="search" placeholder="Search movie...">          
+    <img 
+      src="https://cdn-icons-png.flaticon.com/512/1946/1946429.png" 
+      class="profile-image" 
+      [routerLink]="['login']"
+      alt="user">
+  </div>  
+</div>
+

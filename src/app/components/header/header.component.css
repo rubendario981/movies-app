@@ -1,0 +1,61 @@
+.header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: blue solid 3px;
+  padding: 18px;
+  background-color: rgb(237, 233, 233);
+}
+.header>.image-title{
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.title-app{
+  margin-top: 12px;
+}
+
+.image-title > img{
+  width: 48px;
+  margin-right: 18px;
+}
+
+.options-header{
+  display: flex;
+  gap: 18px;
+  align-items: center;
+}
+.sections>ul{
+  display: flex;
+  list-style: none;
+  margin-top: 14px;
+}
+.sections>ul>li{
+  margin-right: 10px;
+  cursor: pointer;
+  padding: 10px 14px;
+}
+.sections>ul>li:hover{
+  background-color: #9683d9;
+  padding: 10px 14px;
+  border-radius: 18px;
+  color: white;
+}
+.options-header>img{
+  width: 32px;
+}
+.options-header>input{
+  border-radius: 8px;
+  padding-left: 14px;
+  width: 200px;
+}
+.activeLink{
+  background-color: #5533cd;
+  padding: 10px 14px;
+  border-radius: 18px;
+  color: white;
+  font-weight: 500;
+}
+.profile-image{
+  cursor: pointer;
+}

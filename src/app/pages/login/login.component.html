@@ -1,0 +1,34 @@
+<div class="d-flex justify-content-center">
+  <div class="my-5 border border-primary rounded w-50 px-4 pb-4">
+    <h3 class="text-center text-primary fs-4">Login</h3>
+    <form (ngSubmit)="login()" [formGroup]="userLogin" class="">
+      <div class="mb-3">
+        <label for="email" class="form-label">Email address</label>
+        <input type="email" class="form-control" id="email1" formControlName="email" required>
+        
+        <div *ngIf="userLogin.get('email')?.errors && userLogin.get('email')?.touched" class="text-danger">
+          <small *ngIf="userLogin.get('email')?.hasError('required')">The email is required</small>
+          <small *ngIf="userLogin.get('email')?.hasError('minlength')">The email must had atleast 4 characters</small>
+        </div>
+        
+      </div>
+
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="form-control" id="password" formControlName="password">
+      </div>
+      <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" formControlName="agreeTerms">
+        <label class="form-check-label">Check me out</label>
+      </div>
+      <div class="d-flex justify-content-around">
+        <button type="submit" class="btn btn-primary" [disabled]="userLogin.invalid">Submit</button>
+        <button [routerLink]="['/']" type="button" class="btn btn-warning">Go to home page</button>
+      </div>
+      <div class="d-flex flex-column justify-content-center mt-3">
+        <h3 class="text-center mb-1"> You still do not have an account? </h3>
+        <a [routerLink]="['/signup']" class="text-primary text-center">Create an account here!!!</a>
+      </div>
+    </form>
+  </div>
+</div>
