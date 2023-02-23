@@ -1,1 +1,14 @@
-<app-carousel [titulo]="CarouselImages"></app-carousel>
+<div class="d-flex flex-column">
+  <h3 class="fs-3">Movies section <small>(View all)</small></h3>
+  <app-carousel [title]="'Top rated movies'" [fetchData]="'topRatedMovies'"></app-carousel>
+  <hr>
+  <app-carousel [title]="'Now in theatres'" [fetchData]="'nowPlayingMovies'"></app-carousel>
+  <hr>
+</div>
+<div class="d-flex flex-column">
+  <h3 class="fs-3">Series zone <small>(View all)</small></h3>
+  <app-carousel [title]="'Best series'" [fetchData]="'topRatedSeries'"></app-carousel>
+  <hr>
+  <app-carousel [title]="'Currently series'" [fetchData]="'nowPlayingSeries'"></app-carousel>
+  <hr>
+</div>

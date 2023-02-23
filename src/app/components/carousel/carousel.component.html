@@ -1,22 +1,30 @@
-<h3 class="fs-4 fw-4 mb-0 ms-2">Popular movies</h3>
-<div *ngIf="moviesPopular.length > 0"  class="list-images">
-  <div *ngFor="let movie of moviesPopular, let i = index">
+<h3 class="fs-4 fw-4 mb-0 ms-2">{{title}}</h3>
+<div *ngIf="data.length > 0; else noData" class="list-images">
+  <div *ngFor="let info of data, let i = index">
     <div class="card-custom">
-      <img src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2{{movie.poster_path}}" class="card-image-top"
-        alt="poster of {{movie.title}}">
+      <img src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2{{info.poster_path}}" class="card-image-top"
+        alt="poster of {{info.title}}">
       <div class="card-body mx-2 my-3">
-        <h5 class="fs-6 fw-semibold movie-title">{{movie.title}}</h5>
+        <h5 class="fs-6 fw-semibold info-title">{{info.title || info.name}}</h5>
+        {{info.release_date}}
         <div class="d-flex justify-content-between align-items-center">
           <div class="d-flex flex-column justify-content-center text-center">
-            <p class="mb-0">Year release</p>
-            <p class="badge text-bg-primary py-1">{{movie.release_date | date | slice:-4 }}</p>
+            <div *ngIf="title?.includes('soon'); else noFutureInfo">
+              <p class="mb-0">Release date</p>
+              <p class="badge text-bg-primary py-1">{{info.release_date | date }}</p>
+            </div>
+            <ng-template #noFutureInfo>
+              <p class="mb-0">{{info.release_date ? 'Release year' : 'First episode'}}</p>
+              <p class="badge text-bg-primary py-1">{{info.release_date | date | slice:-4 }}</p>
+              <p class="badge text-bg-primary py-1">{{info.first_air_date | date }}</p>
+            </ng-template>
           </div>
           <div class="d-flex flex-column justify-content-center text-center">
-            <p class="mb-1">{{movie.vote_average}} / 10 ⭐</p>
-            <p>{{movie.vote_count | number}} votes</p>
+            <p class="mb-1">{{info.vote_average}} / 10 ⭐</p>
+            <p>{{info.vote_count | number}} votes</p>
           </div>
         </div>
-        <p class="text-desc">{{movie.overview}}</p>
+        <p class="text-desc">{{info.overview}}</p>
         <div class="d-flex justify-content-center">
           <button [routerLink]="['/details/', i]" class="btn btn-primary btn-sm">More details</button>
         </div>
@@ -24,84 +32,6 @@
     </div>
   </div>
 </div>
-
-<h3 class="fs-4 fw-4 mb-0 ms-2 mt-4">Best rated movies</h3>
-<div *ngIf="moviesTopRated.length > 0"  class="list-images">
-  <div *ngFor="let movie of moviesTopRated, let i = index">
-    <div class="card-custom">
-      <img src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2{{movie.poster_path}}" class="card-image-top"
-        alt="poster of {{movie.title}}">
-      <div class="card-body mx-2 my-3">
-        <h5 class="fs-6 fw-semibold movie-title">{{movie.title}}</h5>
-        <div class="d-flex justify-content-between align-items-center">
-          <div class="d-flex flex-column justify-content-center text-center">
-            <p class="mb-0">Year release</p>
-            <p class="badge text-bg-primary py-1">{{movie.release_date | date | slice:-4 }}</p>
-          </div>
-          <div class="d-flex flex-column justify-content-center text-center">
-            <p class="mb-1">{{movie.vote_average}} / 10 ⭐</p>
-            <p>{{movie.vote_count | number}} votes</p>
-          </div>
-        </div>
-        <p class="text-desc">{{movie.overview}}</p>
-        <div class="d-flex justify-content-center">
-          <button [routerLink]="['/details/', i]" class="btn btn-primary btn-sm">More details</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<h3 class="fs-4 fw-4 mb-0 ms-2 mt-4">Comming soon!!!</h3>
-<div *ngIf="moviesUpcomming.length > 0"  class="list-images">
-  <div *ngFor="let movie of moviesUpcomming, let i = index">
-    <div class="card-custom">
-      <img src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2{{movie.poster_path}}" class="card-image-top"
-        alt="poster of {{movie.title}}">
-      <div class="card-body mx-2 my-3">
-        <h5 class="fs-6 fw-semibold movie-title">{{movie.title}}</h5>
-        <div class="d-flex justify-content-between align-items-center">
-          <div class="d-flex flex-column justify-content-center text-center">
-            <p class="mb-0">Year release</p>
-            <p class="badge text-bg-primary py-1">{{movie.release_date | date | slice:-4 }}</p>
-          </div>
-          <div class="d-flex flex-column justify-content-center text-center">
-            <p class="mb-1">{{movie.vote_average}} / 10 ⭐</p>
-            <p>{{movie.vote_count | number}} votes</p>
-          </div>
-        </div>
-        <p class="text-desc">{{movie.overview}}</p>
-        <div class="d-flex justify-content-center">
-          <button [routerLink]="['/details/', i]" class="btn btn-primary btn-sm">More details</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<h3 class="fs-4 fw-4 mb-0 ms-2 mt-4">Now playing in theatres</h3>
-<div *ngIf="moviesNowPlaying.length > 0"  class="list-images">
-  <div *ngFor="let movie of moviesNowPlaying, let i = index">
-    <div class="card-custom">
-      <img src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2{{movie.poster_path}}" class="card-image-top"
-        alt="poster of {{movie.title}}">
-      <div class="card-body mx-2 my-3">
-        <h5 class="fs-6 fw-semibold movie-title">{{movie.title}}</h5>
-        <div class="d-flex justify-content-between align-items-center">
-          <div class="d-flex flex-column justify-content-center text-center">
-            <p class="mb-0">Year release</p>
-            <p class="badge text-bg-primary py-1">{{movie.release_date | date | slice:-4 }}</p>
-          </div>
-          <div class="d-flex flex-column justify-content-center text-center">
-            <p class="mb-1">{{movie.vote_average}} / 10 ⭐</p>
-            <p>{{movie.vote_count | number}} votes</p>
-          </div>
-        </div>
-        <p class="text-desc">{{movie.overview}}</p>
-        <div class="d-flex justify-content-center">
-          <button [routerLink]="['/details/', i]" class="btn btn-primary btn-sm">More details</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<ng-template #noData>
+  there aren't data for {{title}}
+</ng-template>

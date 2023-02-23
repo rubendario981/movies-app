@@ -21,7 +21,6 @@ export class MoviesService {
   getUpCommingMovies():Observable<any>{
     return this.http.get(this.url + "/movie/upcoming?api_key=0a2331d13cac732215ae78f5219073bb")
   }
-
   getLatestdMovies():Observable<any>{
     return this.http.get(this.url + "/movie/latest?api_key=0a2331d13cac732215ae78f5219073bb")
   }

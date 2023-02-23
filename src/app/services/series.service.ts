@@ -16,10 +16,13 @@ export class SeriesService {
   getTopRatedSeries():Observable<any>{
     return this.http.get(`${this.url}/tv/top_rated?api_key=${this.api_key}`)
   }
-  getLatestSeries():Observable<any>{
-    return this.http.get(`${this.url}/tv/latest?api_key=${this.api_key}`)
+  getCurrentlySeries():Observable<any>{
+    return this.http.get(`${this.url}/tv/on_the_air?api_key=${this.api_key}`)
   }
   getPopularSeries():Observable<any>{
     return this.http.get(`${this.url}/tv/popular?api_key=${this.api_key}`)
+  }
+  getSimilarSeries(id: number):Observable<any>{
+    return this.http.get(`${this.url}/tv/${id}/similar?api_key=${this.api_key}`)
   }
 }

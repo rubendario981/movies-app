@@ -1,54 +1,75 @@
 import { Component, Input } from '@angular/core';
 import { MoviesService } from 'src/app/services/movies.service';
+import { SeriesService } from 'src/app/services/series.service';
 import { Movie } from '../../models/Movie'
 
 @Component({
   selector: 'app-carousel',
   templateUrl: './carousel.component.html',
   styleUrls: ['./carousel.component.css'],
-  providers: [MoviesService]
+  providers: [MoviesService, SeriesService]
 })
 export class CarouselComponent {
-  images = [944, 1011, 984].map((n) => `https://picsum.photos/id/${n}/300/200`);
-  @Input() titulo: any;
+  @Input() title: string | undefined;
+  @Input() fetchData: string | undefined;
+  public data: Movie[]
+  public dateNow: string;
 
-  public moviesPopular: Movie[]
-  public moviesUpcomming: Movie[]
-  public moviesNowPlaying: Movie[]
-  public moviesLatest: Movie[]
-  public moviesTopRated: Movie[]
-
-  constructor(private requestService: MoviesService){
-    this.moviesPopular = []
-    this.moviesTopRated = []
-    this.moviesUpcomming = []
-    this.moviesNowPlaying = []
-    this.moviesLatest = []
+  constructor(
+    private requestService: MoviesService,
+    private reqSeriesService: SeriesService
+    ) {
+    this.data = []
+    this.dateNow = new Date().toISOString().slice(0, 10)
   }
-  
-  ngOnInit(){
-    this.requestService.getPopularMovies().subscribe(
-      response => this.moviesPopular = response.results,
-      error => console.log(error)
-    )
 
-    this.requestService.getTopRatedMovies().subscribe(
-      response=> this.moviesTopRated = response.results,
-      error => console.log("Cannot get top rated movies", error)      
-    )
+  ngOnInit() {
+    switch (this.fetchData) {
+      case "popularMovies":
+        this.requestService.getPopularMovies().subscribe(
+          response => this.data = response.results,
+          error => console.log(error)
+        )
+        break;      
+      case "nowPlayingMovies":
+        this.requestService.getNowPlayingMovies().subscribe(
+          response => this.data = response.results,
+          error => console.log(error)
+        )
+        break;
+      case "topRatedMovies":
+        this.requestService.getTopRatedMovies().subscribe(
+          response => this.data = response.results,
+          error => console.log(error)
+        )
+        break;
+      case "upCommingMovies": 
+        this.requestService.getUpCommingMovies().subscribe(
+          response => this.data = response.results.filter((word: any) => word.release_date > this.dateNow),
+          error => console.log(error)
+        )
+        break;
+      case "topRatedSeries":
+        this.reqSeriesService.getTopRatedSeries().subscribe(
+          response => this.data = response.results,
+          error => console.log(error)
+        )
+        break;
+      case "nowPlayingSeries":
+        this.reqSeriesService.getCurrentlySeries().subscribe(
+          response => this.data = response.results.sort((a: any, b: any) => b.vote_average - a.vote_average),
+          error => console.log(error)
+        )
+        break;
+      case "popularSeries":
+        this.reqSeriesService.getPopularSeries().subscribe(
+          response => this.data = response.results,
+          error => console.log(error)
+        )
+        break;
 
-    this.requestService.getUpCommingMovies().subscribe(
-      response=> this.moviesUpcomming = response.results,
-      error => console.log("Cannot get comming soon movies", error)      
-    )
-
-    this.requestService.getNowPlayingMovies().subscribe(
-      response=> this.moviesNowPlaying = response.results,
-      error => console.log("Cannot get top rated movies", error)      
-    )
-    this.requestService.getLatestdMovies().subscribe(
-      response=> this.moviesLatest = response.results,
-      error => console.log("Cannot get top rated movies", error)      
-    )
+      default:
+        break;
+    }    
   }
 }

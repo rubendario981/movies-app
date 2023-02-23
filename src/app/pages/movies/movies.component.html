@@ -1,1 +1,10 @@
-<p>movies works!</p>
+<div class="d-flex flex-column mx-3">  
+  <app-carousel [title]="'Now in theatres'" [fetchData]="'nowPlayingMovies'"></app-carousel>
+  <hr>
+  <app-carousel [title]="'Top rated movies (ever)'" [fetchData]="'topRatedMovies'"></app-carousel>
+  <hr>
+  <app-carousel [title]="'Popular movies now'" [fetchData]="'popularMovies'"></app-carousel>
+  <hr>
+  <app-carousel [title]="'Comming soon'" [fetchData]="'upCommingMovies'"></app-carousel>
+
+</div>

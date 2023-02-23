@@ -6,6 +6,4 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-CarouselImages: string = "Dando titulo desde el home componente";
-
 }
