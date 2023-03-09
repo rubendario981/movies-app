@@ -4,12 +4,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatButtonModule } from '@angular/material/button';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { HomeComponent } from './pages/home/home.component';
+import { CardComponent } from './components/card/card.component';
 import { DetailsComponent } from './pages/details/details.component';
 import { appRoutingProviders, routing } from './app.routing';
 import { ErrorComponentComponent } from './pages/error-component/error-component.component';
@@ -42,12 +41,11 @@ import { AngularMaterialModule } from './angular-material.module';
     LoginComponent,
     SignupComponent,
     FooterComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MatFormFieldModule,
-    MatButtonModule,
     NgbModule,
     NgbCarouselModule,
     routing, 

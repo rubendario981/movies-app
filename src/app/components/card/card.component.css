@@ -1,0 +1,25 @@
+.example-card{
+    width: 400px;
+    margin: 12px 6px;
+}
+.data-overview{
+    margin: 12px 6px 0;
+    height: 140px;
+    overflow: hidden;
+    font-weight: lighter;
+    color: #4d4a4a;
+}
+.poster-image{
+    height: 450px;
+    object-fit: cover;
+}
+@media only screen and (max-width: 768px) {
+    .example-card{
+        width: 320px;
+        margin: 8px;
+    }
+    .poster-image{
+        height: 400px;
+        object-fit: contain;
+    }
+}

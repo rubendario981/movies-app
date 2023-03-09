@@ -1,5 +1,5 @@
-<div class="container bg-info">
-    <div *ngFor="let movie of listMoviesTrend" class="d-flex justify-content-around">
-        <p class="bg-primary text-white">{{movie.title}}</p>
+<div class="cards">
+    <div *ngFor="let movie of listMoviesTrend">
+        <app-card [data]="movie"/>        
     </div>
 </div>
